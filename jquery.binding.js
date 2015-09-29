@@ -27,8 +27,7 @@
 	 * @returns {jQuery|*}
 	 */
 	$.fn.sortable = function (options) {
-		var retVal,
-			args = arguments;
+		var retVal;
 
 		this.each(function () {
 			var $el = $(this),
@@ -47,11 +46,8 @@
 					sortable.destroy();
 					$el.removeData('sortable');
 				}
-				else if (typeof sortable[options] === 'function') {
-					retVal = sortable[options].apply(sortable, [].slice.call(args, 1));
-				}
-				else if (options in sortable.options) {
-					retVal = sortable.option.apply(sortable, args);
+				else if (options in sortable) {
+					retVal = sortable[sortable].apply(sortable, [].slice.call(arguments, 1));
 				}
 			}
 		});
